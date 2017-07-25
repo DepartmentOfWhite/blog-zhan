@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=750, user-scalable=no">
+  <title>登录</title>
+  <link rel="shortcut icon" type="image/x-icon" href="http://codding.cn/all/static/img/favicon.ico">
+  <link rel="stylesheet" href="static/boot/css/bootstrap.css">
+  <link rel="stylesheet" href="static/css/all.css">
+</head>
+<body>
+  
+<style>
+  html, body {height: 100%;}
+  body {background: url(static/img/bg.jpg) no-repeat center / cover;}
+</style>
+<div class="mask" disable-hide style="display: block;">
+  <div class="box">
+    <div class="gray-title">
+      <span class="text">登录</span>
+    </div>
+    <form class="space" id="formLogin">
+      <table class="align">
+        <tr>
+          <td>用户名：</td>
+          <td>
+            <input type="text" id="username" class="form-control" required value="摘星">
+          </td>
+        </tr>
+        <tr>
+          <td>密　码：</td>
+          <td>
+            <input type="password" id="password" class="form-control" required value="123123">
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <input type="submit" value="登录" class="btn btn-success">
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div><div class="vm"></div>
+</div>
+
+<script src="static/js/jq.js"></script>
+<script src="static/js/g.es6.js"></script>
+<script src="static/crypto-js/crypto-js.js"></script>
+<script src="static/crypto-js/hmac-sha256.js"></script>
+<script src="static/js/login.es6.js"></script>
+
+</body>
+</html>

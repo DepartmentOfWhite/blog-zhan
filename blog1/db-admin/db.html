@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <title>DB-Admin | By 摘星fy</title>
+  <link rel="shortcut icon" type="image/x-icon" href="http://codding.cn/all/static/img/favicon.ico">
+  <link rel="stylesheet" href="static/boot/css/bootstrap.css">
+  <link rel="stylesheet" href="static/css/all.css">
+  <link rel="stylesheet" href="static/css/admin.css">
+  <style>
+    @media (min-width: 992px) {
+      #table-data-modal > .modal-lg {width: 90%;}
+    }
+  </style>
+</head>
+<body>
+
+<div id="app">
+  <div class="admin-nav">
+    <div class="glass-border">
+      <!-- <div class="fr">
+        <i class="glyphicon glyphicon-share-alt" title="导入"></i>
+        <i class="glyphicon glyphicon-plus" title="新建"></i>
+      </div> -->
+      <div class="over-hidden">
+        <i class="glyphicon glyphicon-home"></i>
+        <span>数据库</span>
+      </div>
+    </div>
+    <div class="auto-scroll">
+      <ul class="list-unstyled">
+        <li
+          v-for="(_db, idx) in db.list"
+          @click="chooseDBAndGetTables(idx, $event)"
+        >
+          <div
+            :class="['glass-border', idx === router.dbIndex ? 'on' : '']"
+          >
+            <!-- <div class="fr">
+              <i class="glyphicon glyphicon-share-alt" title="导出" style="transform:  rotate(90deg);"></i>
+              <i class="glyphicon glyphicon-pencil" title="编辑"></i>
+              <i class="glyphicon glyphicon-remove" title="删除"
+              ></i>
+            </div> -->
+            <div class="over-hidden">
+              <span class="text">{{_db.name}}</span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="admin-nav admin-nav-lighter" style="left: 180px;">
+    <div class="glass-border">
+      <!-- <div class="fr">
+        <i class="glyphicon glyphicon-share-alt" title="导入"></i>
+        <i class="glyphicon glyphicon-plus" title="新建"></i>
+      </div> -->
+      <div class="over-hidden">
+        <i class="glyphicon glyphicon-th-list"></i>
+        <span>数据表</span>
+      </div>
+    </div>
+    <div class="auto-scroll">
+      <ul class="list-unstyled">
+        <li v-for="(item, idx) in _db.tableList"
+          @click="getFileds(idx)"
+        >
+          <div class="glass-border"
+            :class="{on: idx === router.tableIndex}"
+          >
+            <!-- <div class="fr">
+              <i class="glyphicon glyphicon-share-alt" title="导出" style="transform:  rotate(90deg);"></i>
+              <i class="glyphicon glyphicon-pencil" title="编辑"></i>
+              <i class="glyphicon glyphicon-remove" title="删除"
+              ></i>
+            </div> -->
+            <div class="over-hidden">
+              <span class="text">{{item.name}}</span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="auto-scroll page-container" style="left: 360px;">
+    <div class="title-bar">
+      <div class="fr">
+        <i class="glyphicon glyphicon-plus"
+          @click="gotoTableDataModal('add')"
+        ></i>
+      </div>
+      <div class="over-hidden">
+        <i class="glyphicon glyphicon-cog"></i>
+        <span>管理</span>
+      </div>
+    </div>
+    <div class="auto-scroll" style="top: 40px;">
+      <div class="space">
+        <!-- <pre>{{checkList}}</pre> -->
+        <h3 class="page-header" v-if="(_table.tableData || []).length === 0">暂无数据</h3>
+        <table class="table table-bordered nw">
+          <thead v-if="(_table.tableData || []).length !== 0">
+            <tr>
+              <th>
+                <input type="checkbox" @change="checkAllOrNot">
+              </th>
+              <th>
+                <button class="btn btn-danger btn-xs"
+                  @click="clearTable"
+                >清空</button>
+                <button class="btn btn-danger btn-xs"
+                  @click="removeGroupTableData"
+                  v-if="checkList.length > 0"
+                >
+                  <i class="glyphicon glyphicon-trash" title="删除"></i>
+                </button>
+              </th>
+              <th v-for="(item, idx) in _table.fieldList">{{item.Field}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(row, idx) in _table.tableData">
+              <td>
+                <input type="checkbox" :value="row.id" v-model="checkList"
+                  @click="checkGroup(idx, $event)"
+                >
+              </td>
+              <td>
+                <button class="btn btn-danger btn-xs"
+                  @click="removeTableDataRow(idx)"
+                >
+                  <span class="glyphicon glyphicon-trash"></span>
+                </button>
+                <button class="btn btn-warning btn-xs"
+                  @click="gotoTableDataModal('update', idx)"
+                >
+                  <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+              </td>
+              <td v-for="(item, idx) in _table.fieldList">{{filterStr(item.Field, row[item.Field])}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="table-data-modal" tabindex="-1">
+    <div class="modal-dialog modal-lg" role="document">
+      <form class="modal-content"
+        @submit.prevent="operTableData"
+      >
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">
+            <i class="glyphicon glyphicon-warning-sign"></i>
+            <span>{{tableData.isAdd ? '添加' : '修改'}}</span>
+          </h4>
+        </div>
+        <div class="modal-body">
+          <table class="align">
+            <tr v-for="(item, idx) in _table.fieldList">
+              <td>{{item.Field}}：</td>
+              <td v-if="item.Field=='content'">
+                <textarea rows="10" class="form-control"
+                  v-model="tableData.data[item.Field]"
+                  :disabled="item.Key === 'PRI'"
+                ></textarea>
+              </td>
+              <td v-else>
+                <input type="text" class="form-control"
+                  v-model="tableData.data[item.Field]"
+                  :disabled="item.Key === 'PRI'"
+                >
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+          <input type="submit" class="btn btn-primary">
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modal-alert">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">
+            <i class="glyphicon glyphicon-info-sign"></i>
+            <span>操作提示</span>
+          </h4>
+        </div>
+        <div class="modal-body">
+          <p></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+          <button type="button" class="btn btn-primary btn-sure">确定</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</div>
+
+<script src="static/js/jq.js"></script>
+<script src="static/boot/js/bootstrap.js"></script>
+<script src="static/js/vue.js"></script>
+<script src="static/js/vue-filters.es6.js"></script>
+<script src="static/js/marked.js"></script>
+<script src="static/js/g.es6.js"></script>
+<script src="static/js/db.es6.js"></script>
+
+</body>
+</html>

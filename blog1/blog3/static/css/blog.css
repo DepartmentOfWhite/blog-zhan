@@ -1,0 +1,88 @@
+* {padding: 0; margin: 0; font: inherit; color: inherit; box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+  -webkit-tap-highlight-color: none;
+}
+body {background: #eee; font-size: 30px; color: #333;}
+a:link,
+a:hover,
+a:active,
+a {text-decoration: none;}
+time {color: #999;}
+
+.fl {float: left;}
+.fr {float: right;}
+.c {text-align: center;}
+.af:after {content: ""; display: block; clear: both;}
+.vm {display: inline-block; vertical-align: middle; height: 100%;}
+.in {display: block; position: relative;}
+.ellipsis {overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+.space {padding: .6em;}
+.shadow {box-shadow: 0 0 10px rgba(0,0,0,.2); position: relative; background: #fff;}
+.abs {position: absolute; left: 0; top: 0; right: 0; bottom: 0;}
+
+[data-action] {cursor: pointer;}
+[lazy-load] {background: #ddd url(/static/img/snail.png) no-repeat center;}
+
+.def-a a,
+.def-a a:hover,
+.def-a a:active,
+.def-a a:link {color: inherit;}
+
+.bounce-enter-active {
+  animation: bounce-in .3s;
+}
+.bounce-leave-active {
+  animation: bounce-out .3s;
+}
+@keyframes bounce-in {
+  0% {transform: translateX(750px);}
+  100% {transform: translateX(0);}
+}
+@keyframes bounce-out {
+  0% {transform: translateX(0);}
+  100% {transform: translateX(750px);}
+}
+
+.fade-enter-active {
+  animation: fade-in .3s;
+}
+.fade-leave-active {
+  animation: fade-out .3s;
+}
+@keyframes fade-in {
+  0% {opacity: 0;}
+  100% {opacity: 1}
+}
+@keyframes fade-out {
+  0% {opacity: 1}
+  100% {opacity: 0;}
+}
+
+.ic-list {}
+.ic-list section {display: flex; padding: .5em  0; border-bottom: 1px solid #ddd;}
+.ic-list section:first-child {padding-top: 0;}
+.ic-list section:last-child {border-bottom: none; padding-bottom: 0;}
+.ic-list section .img-box {width: 7em; margin-right: .5em;}
+.ic-list section .img-box > div {padding-top: 100%; border-radius: 4px;}
+.ic-list section .text-box {flex: 1;}
+.ic-list section .text-box .up {height: 2em; line-height: 2em; overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1;}
+.ic-list section .text-box .middle {height: 3em; overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-height: 1.5em; color: #666;}
+.ic-list section .text-box .bottom {height: 2em; line-height: 2em; display: flex; color: #999;}
+.ic-list section .text-box .bottom .read-count {flex: 1;}
+
+
+.title-bar {display: flex; font-size: 36px; line-height: 1em; white-space: nowrap; z-index: 2;}
+.title-bar > div {padding: .8em; position: relative;}
+.title-bar .abs {cursor: pointer;}
+.title-bar .btn-l {cursor: pointer;}
+.title-bar .mid {flex: 1; text-align: center;}
+.title-bar .btn-r {cursor: pointer;}
+.title-bar .btn-r .plus-menu {position: absolute; right: .5em; top: 100%; line-height: 2em; background: #fff; border-radius: 4px;}
+.title-bar .btn-r .plus-menu ul {margin-bottom: 0; padding: .5em 0;}
+.title-bar .btn-r .plus-menu ul li {}
+.title-bar .btn-r .plus-menu ul li a {padding: 0 .8em;}
+.title-bar .btn-r .plus-menu:before {content: ""; width: 0px; height: 0px; border: 10px solid transparent; border-bottom-color: #fff; position: absolute; right: .45em; top: -20px;}
+.title-bar .hid {opacity: 0; cursor: default;}
+
+.form-control {padding: 0.43em 0.86em; height: 2.43em; font-size: inherit;}
+.btn {padding: 0.43em 0.86em; height: 2.43em; font-size: inherit;}

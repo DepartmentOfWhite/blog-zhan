@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <title>DB-PHP | By 摘星fy</title>
+  <link rel="shortcut icon" type="image/x-icon" href="http://codding.cn/all/static/img/favicon.ico">
+  <link rel="stylesheet" href="../static/boot/css/bootstrap.css">
+  <link rel="stylesheet" href="../static/css/all.css">
+  <link rel="stylesheet" href="../static/css/admin.css">
+  <style>
+    textarea {font-size: 16px; font-family: "微软雅黑"; color: #333;}
+  </style>
+</head>
+<body>
+
+<style>
+  #app {background: #eee;}
+  #app > section {width: 50%; float: left; height: 100%;}
+  #app .space {height: 100%;}
+</style>
+<div id="app">
+  <section class="_1">
+    <div class="space">
+      <textarea @input="sendAjax" v-model="sql" style="height: 100%;" class="form-control" placeholder="请输入sql语句"></textarea>
+    </div>
+  </section>
+  <section class="_2">
+    <div class="space">
+      <pre style="height: 100%;" v-html="result"></pre>
+    </div>
+  </section>
+</div>
+
+<script src="../static/js/jq.js"></script>
+<script src="../static/js/vue.js"></script>
+<script>
+var vm = new Vue({
+  el: '#app',
+  data() {
+    return {
+      timer: 0,
+      sql: '',
+      result: ''
+    }
+  },
+  methods: {
+    sendAjax() {
+      var vm = this
+      clearTimeout(vm.timer)
+      vm.timer = setTimeout(function() {
+        $.post('php/sql.php', {
+          sql: vm.sql
+        }, function(data) {
+          vm.result = data
+        })
+      }, 300)
+    }
+  }
+})
+</script>
+
+</body>
+</html>

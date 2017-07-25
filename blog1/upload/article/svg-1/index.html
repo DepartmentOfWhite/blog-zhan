@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="../../../static/boot/css/bootstrap.css">
+</head>
+<body>
+
+<div id="app" class="container">
+  <div>
+    <h1 class="page-header">
+      <a href="https://www.w3schools.com/graphics/svg_rect.asp">w3c官网</a>
+    </h1>
+  </div>
+  <div id="svgs">
+    <section v-for="(item, idx) in svgList">
+      <div>
+        <h3 class="page-header" v-html="item.info"></h3>
+      </div>
+      <div v-html="item.html"></div>
+      <div>
+        <pre>{{item.html}}</pre>
+      </div>
+    </section>
+  </div>
+  <div>
+    <table class="table table-bordered">
+      <tbody><tr>
+        <th style="width:20%">Element</th>
+        <th style="width:30%">Description</th>
+        <th>Attributes</th>
+      </tr>
+      <tr>
+        <td>&lt;a&gt;</td>
+        <td>Creates a link around SVG elements</td>
+        <td>xlink:show<br>
+     xlink:actuate<br>
+     xlink:href<br>
+     target</td>
+      </tr>
+      <tr>
+        <td>&lt;altGlyph&gt;</td>
+        <td>Provides control over the glyphs used to render particular character data</td>
+        <td>x<br>
+     y<br>
+     dx<br>
+     dy<br>
+     rotate<br>
+     glyphRef<br>
+     format<br>
+     xlink:href</td>
+      </tr>
+      <tr>
+        <td>&lt;altGlyphDef&gt;</td>
+        <td>Defines a substitution set for glyphs</td>
+        <td>id</td>
+      </tr>
+      <tr>
+        <td>&lt;altGlyphItem&gt;</td>
+        <td>Defines a candidate set of glyph substitutions</td>
+        <td>id</td>
+      </tr>
+      <tr>
+        <td>&lt;animate&gt;</td>
+        <td>Defines how an attribute of an element changes over time</td>
+        <td>attributeName="the name of the target attribute"<br>by="a relative offset value"<br>
+     from="the starting value"<br>
+     to="the ending value"<br>
+     dur="the duration"<br>
+     repeatCount="the number of time the animation will take place"</td>
+      </tr>
+      <tr>
+        <td>&lt;animateMotion&gt;</td>
+        <td>Causes a referenced element to move along a motion path</td>
+        <td>calcMode="the interpolation mode for the animation. Can be 'discrete', 'linear', 'paced', 'spline'"<br>
+     path="the motion path"<br>
+     keyPoints="how far along the motion path the object shall move at the moment in time"<br>
+     rotate="applies a rotation transformation"<br>
+     xlink:href="an URI reference to the &lt;path&gt; element which defines the motion path"</td>
+      </tr>
+      <tr>
+        <td>&lt;animateTransform&gt;</td>
+        <td>Animates a transformation attribute on a target element, thereby allowing animations to control translation, scaling, rotation and/or skewing</td>
+        <td>by="a relative offset value"<br>
+     from="the starting value"<br>
+     to="the ending value"<br>
+     type="the type of transformation which is to have its values change over time. Can be 'translate', 'scale', 'rotate', 'skewX', 'skewY'"</td>
+      </tr>
+      <tr>
+        <td>&lt;circle&gt;</td>
+        <td>Defines a circle</td>
+        <td>cx="the x-axis center of the circle"<br>
+     cy="the y-axis center of the circle"<br>
+     r="The circle's radius". Required.<br>
+     <br>
+     + presentation attributes:<br>
+     Color, FillStroke, Graphics</td>
+      </tr>
+      <tr>
+        <td>&lt;clipPath&gt;</td>
+        <td>Clipping is about hiding what normally would be drawn. The stencil which defines what is and what isn't drawn is called a clipping path</td>
+        <td>clip-path="the referenced clipping path is intersected with the referencing clipping path"<br>
+     clipPathUnits="'userSpaceOnUse' or 'objectBoundingBox'. The second value makes units of children a fraction of the object bounding box which uses the mask (default: 'userSpaceOnUse')"</td>
+      </tr>
+      <tr>
+        <td>&lt;color-profile&gt;</td>
+        <td>Specifies a color profile description (when the document is styled using CSS)</td>
+        <td>local="the unique ID for a locally stored color profile"<br>
+     name=""<br>
+     rendering-intent="auto|perceptual|relative-colorimetric|saturation|absolute-colorimetric"<br>
+     xlink:href="the URI of an ICC profile resource"</td>
+      </tr>
+      <tr>
+        <td>&lt;cursor&gt;</td>
+        <td>Defines a platform-independent custom cursor</td>
+        <td>x="the x-axis top-left corner of the cursor (default is 0)"<br>
+     y="the y-axis top-left corner of the cursor (default is 0)"<br>
+     xlink:href="the URI of the image to use as the cursor</td>
+      </tr>
+      <tr>
+        <td>&lt;defs&gt;</td>
+        <td>A container for referenced elements</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&lt;desc&gt;</td>
+        <td>A text-only description for container elements or graphic elements in SVG (user agents may display the text 
+        as a tooltip)</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&lt;ellipse&gt;</td>
+        <td>Defines an ellipse</td>
+        <td>cx="the x-axis center of the ellipse"<br>
+     cy="the y-axis center of the ellipse"<br>
+     rx="the length of the ellipse's radius along the x-axis". Required.<br>
+     ry="the length of the ellipse's radius along the y-axis". Required.<br>
+     <br>
+     + presentation attributes:<br>
+     Color, FillStroke, Graphics</td>
+      </tr>
+      <tr>
+        <td>&lt;feBlend&gt;</td>
+        <td>Composes two objects together according to a certain blending mode</td>
+        <td>mode="the image blending modes: normal|multiply|screen|darken|lighten"<br>
+     in="identifies input for the given filter primitive: SourceGraphic | SourceAlpha | BackgroundImage | BackgroundAlpha | FillPaint | StrokePaint | &lt;filter-primitive-reference&gt;"<br>
+     in2="the second input image to the blending operation"</td>
+      </tr>
+      <tr>
+        <td>feColorMatrix</td>
+        <td>SVG filter. Applies a matrix transformation</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>feComponentTransfer</td>
+        <td>SVG filter. Performs component-wise remapping of data</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>feComposite</td>
+        <td>SVG filter.</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>feConvolveMatrix</td>
+        <td>SVG filter.</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>feDiffuseLighting</td>
+        <td>SVG filter.</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>feDisplacementMap</td>
+        <td>SVG filter.</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>feDistantLight</td>
+        <td>SVG filter. Defines a light source</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>feFlood</td>
+        <td>SVG filter.</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>feFuncA</td>
+        <td>SVG filter. Sub-element to feComponentTransfer</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>feFuncB</td>
+        <td>SVG filter. Sub-element to feComponentTransfer</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>feFuncG</td>
+        <td>SVG filter. Sub-element to feComponentTransfer</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>feFuncR</td>
+        <td>SVG filter. Sub-element to feComponentTransfer</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>feGaussianBlur</td>
+        <td>SVG filter. Performs a Gaussian blur on the image</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>feImage</td>
+        <td>SVG filter.</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>feMerge</td>
+        <td>SVG filter. Creates image layers on top of each 
+    other</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>feMergeNode</td>
+        <td>SVG filter. Sub-element to feMerge</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>feMorphology</td>
+        <td>SVG filter. Performs a "fattening" or "thinning" on a 
+        source graphic</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>feOffset</td>
+        <td>SVG filter. Moves an image relative to its current position</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>fePointLight</td>
+        <td>SVG filter.</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>feSpecularLighting</td>
+        <td>SVG filter.</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>feSpotLight</td>
+        <td>SVG filter.</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>feTile</td>
+        <td>SVG filter.</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>feTurbulence</td>
+        <td>SVG filter.</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>filter</td>
+        <td>Container for filter effects</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>font</td>
+        <td>Defines a font</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>font-face</td>
+        <td>Describes the characteristics of a font</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>font-face-format</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>font-face-name</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>font-face-src</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>font-face-uri</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>foreignObject</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&lt;g&gt;</td>
+        <td>Used to group together   
+        elements</td>
+        <td>id="the name of the group"<br>
+     fill="the fill color for the group"<br>
+     opacity="the opacity for the group"<br>
+     <br>
+     + presentation attributes:<br>
+     All</td>
+      </tr>
+      <tr>
+        <td>glyph</td>
+        <td>Defines the graphics for a given glyph</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>glyphRef</td>
+        <td>Defines a possible glyph to use</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>hkern</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&lt;image&gt;</td>
+        <td>Defines an image</td>
+        <td>x="the x-axis top-left corner of the image"<br>
+     y="the y-axis top-left corner of the image"<br>
+     width="the width of the image". Required.<br>
+     height="the height of the image". Required.<br>
+     xlink:href="the path to the image". Required.<br>
+     <br>
+     + presentation attributes:<br>
+     Color, Graphics, Images, Viewports</td>
+      </tr>
+      <tr>
+        <td>&lt;line&gt;</td>
+        <td>Defines a line</td>
+        <td>x1="the x start point of the line"<br>
+     y1="the y start point of the line"<br>
+     x2="the x end point of the line"<br>
+     y2="the y end point of the line"<br>
+     <br>
+     + presentation attributes:<br>
+     Color, FillStroke, Graphics, Markers</td>
+      </tr>
+      <tr>
+        <td>&lt;linearGradient&gt;</td>
+        <td>Defines a linear gradient. Linear gradients fill the object by using a vector, and can be defined as horizontal, vertical or angular gradients.</td>
+        <td>id="the unique id used to reference this pattern. Required to reference it"<br>
+     gradientUnits="'userSpaceOnUse' or 'objectBoundingBox'. Use the view box or object to determine relative position of vector points. (Default 'objectBoundingBox')"<br>
+     gradientTransform="the transformation to apply to the gradient"<br>
+     x1="the x start point of the gradient vector (number or % - 0% is default)"<br>
+     y1="the y start point of the gradient vector. (0% default)" <br>
+     x2="the x end point of the gradient vector. (100% default)"<br>
+     y2="the y end point of the gradient vector. (0% default)" <br>
+     spreadMethod="'pad' or 'reflect' or 'repeat'"<br>
+     xlink:href="reference to another gradient whose attribute values are used as defaults and stops included. Recursive"</td>
+      </tr>
+      <tr>
+        <td>&lt;marker&gt;</td>
+        <td>Markers can be placed on the vertices of lines, polylines, polygons and paths. These elements can use the marker attributes "marker-start", "marker-mid" and "marker-end"' which inherit by default or can be set to 'none' or the URI of a defined marker. You must first define the marker before you can reference it via its URI. Any kind of shape can be put inside marker. They are drawn on top of the element they are attached to</td>
+        <td>markerUnits="'strokeWidth' or 'userSpaceOnUse'. If 'strokeWidth' is used then one unit equals one stroke width. Otherwise, the marker does not scale and uses the the same view units as the referencing element (default 'strokeWidth')"<br>
+     refx="the position where the marker connects with the vertex (default 0)"<br>
+     refy="the position where the marker connects with the vertex (default 0)"<br>
+     orient="'auto' or an angle to always show the marker at. 'auto' will compute an angle that makes the x-axis a tangent of the vertex (default 0)"<br>
+     markerWidth="the width of the marker (default 3)"<br>
+     markerHeight="the height of the marker (default 3)"<br>
+     viewBox="the points "seen" in this SVG drawing area. 4 values separated by white space or commas. (min x, min y, width, height)" <br>
+     <br>
+     + presentation attributes:<br>
+     All</td>
+      </tr>
+      <tr>
+        <td>&lt;mask&gt;</td>
+        <td>Masking is a combination of opacity values and clipping. Like clipping you can use shapes, text or paths to define sections of the mask. The default state of a mask is fully transparent which is the opposite of clipping plane. The graphics in a mask sets how opaque portions of the mask are</td>
+        <td>maskUnits="'userSpaceOnUse' or 'objectBoundingBox'. Set whether the clipping plane is relative the full view port or object (default: 'objectBoundingBox')"<br>
+     maskContentUnits="Use the second with percentages to make mask graphic positions relative the object. 'userSpaceOnUse' or 'objectBoundingBox' (default: 'userSpaceOnUse')"<br>
+     x="the clipping plane of the mask (default: -10%)" <br>
+     y="the clipping plane of the mask (default: -10%)" <br>
+     width="the clipping plane of the mask (default: 120%)"<br>
+     height="the clipping plane of the mask (default: 120%)"</td>
+      </tr>
+      <tr>
+        <td>metadata</td>
+        <td>Specifies metadata</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>missing-glyph</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>mpath</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&lt;path&gt;</td>
+        <td>Defines a path</td>
+        <td>d="a set of commands which define the path"<br>
+     pathLength="If present, the path will be scaled so that the computed path length of the points equals this value"<br>
+     transform="a list of transformations"<br>
+     <br>
+     + presentation attributes:<br>
+     Color, FillStroke, Graphics, Markers</td>
+      </tr>
+      <tr>
+        <td>&lt;pattern&gt;</td>
+        <td>Defines the coordinates you want the view to show and the size of the view. Then you add shapes into your pattern. The pattern repeats when an edge of the view box (viewing area) is hit</td>
+        <td>id="the unique id used to reference this pattern." Required. <br>
+     patternUnits="'userSpaceOnUse' or 'objectBoundingBox'. The second value makes units of x, y, width, height a fraction (or %) of the object bounding box which uses the pattern."<br>
+     patternContentUnits="'userSpaceOnUse' or 'objectBoundingBox'"<br>
+     patternTransform="allows the whole pattern to be transformed"<br>
+     x="pattern's offset from the top-left corner (default 0)" <br>
+     y="pattern's offset from the top-left corner. (default 0)"<br>
+     width="the width of the pattern tile (default 100%)" <br>
+     height="the height of the pattern tile (default 100%)"<br>
+     viewBox="the points "seen" in this SVG drawing area. 4 values separated by white space or commas. (min x, min y, width, height)" <br>
+     xlink:href="reference to another pattern whose attribute values are used as defaults and any children are inherited. Recursive"<br>
+    &nbsp;</td>
+      </tr>
+      <tr>
+        <td>&lt;polygon&gt;</td>
+        <td>Defines a graphic that contains at least three sides</td>
+        <td>points="the points of the polygon. The total number of points must be even". Required.<br>
+     fill-rule="part of the FillStroke presentation attributes"<br>
+     <br>
+     + presentation attributes:<br>
+     Color, FillStroke, Graphics, Markers</td>
+      </tr>
+      <tr>
+        <td>&lt;polyline&gt;</td>
+        <td>Defines any shape that consists of only straight lines</td>
+        <td>points="the points on the polyline". Required.<br>
+     <br>
+     + presentation attributes:<br>
+     Color, FillStroke, Graphics, Markers</td>
+      </tr>
+      <tr>
+        <td>&lt;radialGradient&gt;</td>
+        <td>Defines a radial gradient. Radial gradients are created by taking a circle and smoothly changing values between gradient stops from the focus point to the outside radius.</td>
+        <td>gradientUnits="'userSpaceOnUse' or 'objectBoundingBox'. Use the view box or object to determine relative position of vector points. (Default 'objectBoundingBox')"<br>
+     gradientTransform="the transformation to apply to the gradient" <br>
+     cx="the center point of the gradient (number or % - 50% is default)"<br>
+     cy="the center point of the gradient. (50% default)"<br>
+     r="the radius of the gradient. (50% default)" <br>
+     fx="the focus point of the gradient. (0% default)"<br>
+     fy="The focus point of the gradient. (0% default)"<br>
+     spreadMethod="'pad' or 'reflect' or 'repeat'"<br>
+     xlink:href="Reference to another gradient whose attribute values are used as defaults and stops included. Recursive"</td>
+      </tr>
+      <tr>
+        <td>&lt;rect&gt;</td>
+        <td>Defines a rectangle</td>
+        <td>x="the x-axis top-left corner of the rectangle"<br>
+     y="the y-axis top-left corner of the rectangle"<br>
+     rx="the x-axis radius (to round the element)"<br>
+     ry="the y-axis radius (to round the element)" <br>
+     width="the width of the rectangle". Required.<br>
+     height="the height of the rectangle" Required.<br>
+     <br>
+     + presentation attributes:<br>
+     Color, FillStroke, Graphics</td>
+      </tr>
+      <tr>
+        <td>script</td>
+        <td>Container for scripts (e.g., ECMAScript)</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>set</td>
+        <td>Sets the value of an 
+        attribute for a specified duration</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&lt;stop&gt;</td>
+        <td>The stops for a gradient</td>
+        <td>offset="the offset for this stop (0 to 1/0% to 100%)". Required.<br>
+     stop-color="the color of this stop" <br>
+     stop-opacity="the opacity of this stop (0 to 1)"</td>
+      </tr>
+      <tr>
+        <td>style</td>
+        <td>Allows style sheets to be embedded directly within SVG 
+        content</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&lt;svg&gt;</td>
+        <td>Creates an SVG document fragment</td>
+        <td>x="top left corner when embedded (default 0)"<br>
+     y="top left corner when embedded (default 0)"<br>
+     width="the width of the svg fragment (default 100%)"<br>
+     height="the height of the svg fragment (default 100%)"<br>
+     viewBox="the points "seen" in this SVG drawing area. 4 values separated by white space or commas. (min x, min y, width, height)"<br>
+     preserveAspectRatio="'none' or any of the 9 combinations of 'xVALYVAL' where VAL is 'min', 'mid' or 'max'. (default xMidYMid)"<br>
+     zoomAndPan="'magnify' or 'disable'. Magnify option allows users to pan and zoom your file (default magnify)"<br>
+     xml="outermost &lt;svg&gt; element needs to setup SVG and its namespace: xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve""<br>
+     <br>
+     + presentation attributes:<br>
+     All</td>
+      </tr>
+      <tr>
+        <td>switch</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>symbol</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&lt;text&gt;</td>
+        <td>Defines a text</td>
+        <td>x="a list of x-axis positions. The nth x-axis position is given to the nth character in the text. If there are additional characters after the positions run out they are placed after the last character. 0 is default"<br>
+     y="a list of y-axis positions. (see x). 0 is default"<br>
+     dx="a list of lengths which moves the characters relative to the absolute position of the last glyph drawn. (see x)"<br>
+     dy="a list of lengths which moves the characters relative to the absolute position of the last glyph drawn. (see x)" <br>
+     rotate="a list of rotations. The nth rotation is performed on the nth character. Additional characters are NOT given the last rotation value"<br>
+     textLength="a target length for the text that the SVG viewer will attempt to display the text between by adjusting the spacing and/or the glyphs. (default: The text's normal length)"<br>
+     lengthAdjust="tells the viewer what to adjust to try to accomplish rendering the text if the length is specified. The two values are 'spacing' and 'spacingAndGlyphs'"<br>
+     <br>
+     + presentation attributes:<br>
+     Color, FillStroke, Graphics, FontSpecification, TextContentElements</td>
+      </tr>
+      <tr>
+        <td>textPath</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>title</td>
+        <td>A text-only description for elements in SVG - not displayed as part of the 
+        graphics. User agents may display the text 
+        as a tooltip</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&lt;tref&gt;</td>
+        <td>References any &lt;text&gt; element in the SVG document and reuse it</td>
+        <td>Identical to the &lt;text&gt; element</td>
+      </tr>
+      <tr>
+        <td>&lt;tspan&gt;</td>
+        <td>Identical to the &lt;text&gt; element but can be nested inside text tags and inside itself</td>
+        <td>Identical to the &lt;text&gt; element<br>
+     + in addition:<br>
+     xlink:href="Reference to a &lt;text&gt; element" </td>
+      </tr>
+      <tr>
+        <td>&lt;use&gt;</td>
+        <td>Uses a URI to reference a &lt;g&gt;, &lt;svg&gt; or other graphical element with a unique id attribute and replicate it. The copy is only a reference to the original so only the original exists in the document. Any change to the original affects all copies.</td>
+        <td>x="the x-axis top-left corner of the cloned element"<br>
+     y="the y-axis top-left corner of the cloned element"<br>
+     width="the width of the cloned element"<br>
+     height="the height of the cloned element"<br>
+     xlink:href="a URI reference to the cloned element"<br>
+     <br>
+     + presentation attributes:<br>
+     All</td>
+      </tr>
+      <tr>
+        <td>view</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>vkern</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      </tbody></table>
+  </div>
+</div>
+
+<script src="../../../static/js/vue.js"></script>
+<script>
+var app = new Vue({
+    el: '#app',
+    data: function () {
+        return {
+            svgList: [
+                {
+                    info: "\n            svg \u753B\u65B9\u5757\n          ",
+                    html: "\n<svg width=\"400\" height=\"110\">\n  <rect width=\"300\" height=\"100\" style=\"fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)\" />\n</svg>\n          "
+                },
+                {
+                    info: "\n\n          ",
+                    html: "\n<svg width=\"400\" height=\"180\">\n  <rect x=\"50\" y=\"20\" width=\"150\" height=\"150\"\n  style=\"fill:blue;stroke:pink;stroke-width:5;opacity:0.5\" />\n</svg>\n          "
+                },
+                {
+                    info: "\n\n          ",
+                    html: "\n<svg width=\"400\" height=\"180\">\n  <rect x=\"50\" y=\"20\" rx=\"20\" ry=\"20\" width=\"150\" height=\"150\"\n  style=\"fill:red;stroke:black;stroke-width:5;opacity:0.5\" />\n</svg>\n          "
+                },
+                {
+                    info: "\n            svg \u753B\u5706\n          ",
+                    html: "\n<svg height=\"100\" width=\"100\">\n  <circle cx=\"50\" cy=\"50\" r=\"40\" stroke=\"black\" stroke-width=\"3\" fill=\"red\" />\n</svg>\n          "
+                },
+                {
+                    info: "\n            svg \u753B\u692D\u5706\n          ",
+                    html: "\n<svg height=\"140\" width=\"500\">\n  <ellipse cx=\"200\" cy=\"80\" rx=\"100\" ry=\"50\"\n  style=\"fill:yellow;stroke:purple;stroke-width:2\" />\n</svg>\n          "
+                },
+                {
+                    info: "\n\n          ",
+                    html: "\n<svg height=\"100\" width=\"500\">\n  <ellipse cx=\"240\" cy=\"50\" rx=\"220\" ry=\"30\" style=\"fill:yellow\" />\n  <ellipse cx=\"220\" cy=\"50\" rx=\"190\" ry=\"20\" style=\"fill:white\" />\n</svg>\n          "
+                },
+                {
+                    info: "\n            svg \u753B\u7EBF\u6761\n          ",
+                    html: "\n<svg height=\"210\" width=\"500\">\n  <line x1=\"0\" y1=\"0\" x2=\"200\" y2=\"200\" style=\"stroke:rgb(255,0,0);stroke-width:2\" />\n</svg>\n          "
+                },
+                {
+                    info: "\n            \u591A\u8FB9\u5F62\n          ",
+                    html: "\n<svg height=\"210\" width=\"500\">\n  <polygon points=\"200,10 250,190 160,210\" style=\"fill:lime;stroke:purple;stroke-width:1\" />\n</svg>\n          "
+                },
+                {
+                    info: "\n\n          ",
+                    html: "\n<svg height=\"250\" width=\"500\">\n  <polygon points=\"220,10 300,210 170,250 123,234\" style=\"fill:lime;stroke:purple;stroke-width:1\" />\n</svg>\n          "
+                },
+                {
+                    info: "\n            \u975E\u96F6\u73AF\u7ED5\u539F\u5219 <br />\n            \u53C2\u8003\u5730\u5740\uFF1A http://blog.csdn.net/mishiwjp/article/details/53484235\n          ",
+                    html: "\n<svg height=\"210\" width=\"500\">\n  <polygon points=\"100,10 40,198 190,78 10,78 160,198\"\n  style=\"fill:lime;stroke:purple;stroke-width:5;fill-rule:nonzero;\" />\n</svg>\n          "
+                },
+                {
+                    info: "\n\n          ",
+                    html: "\n<svg height=\"210\" width=\"500\">\n  <polygon points=\"100,10 40,198 190,78 10,78 160,198\"\n  style=\"fill:lime;stroke:purple;stroke-width:5;fill-rule:evenodd;\" />\n</svg>\n          "
+                },
+                {
+                    info: "\n            \u6298\u7EBF\n          ",
+                    html: "\n<svg height=\"200\" width=\"500\">\n  <polyline points=\"20,20 40,25 60,40 80,120 120,140 200,180\"\n  style=\"fill:none;stroke:black;stroke-width:3\" />\n</svg>\n          "
+                },
+                {
+                    info: "\n\n          ",
+                    html: "\n<svg height=\"180\" width=\"500\">\n  <polyline points=\"0,40 40,40 40,80 80,80 80,120 120,120 120,160\"\n  style=\"fill:white;stroke:red;stroke-width:4\" />\n</svg>\n          "
+                },
+                {
+                    info: "\n           path \u8DEF\u5F84\n          ",
+                    html: "\n<svg height=\"210\" width=\"400\">\n  <path d=\"M150 0 L75 200 L225 200 Z\" />\n</svg>\n          "
+                },
+                {
+                    info: "\n\n          ",
+                    html: "\n<svg height=\"400\" width=\"450\">\n  <path id=\"lineAB\" d=\"M 100 350 l 150 -300\" stroke=\"red\"\n  stroke-width=\"3\" fill=\"none\" />\n  <path id=\"lineBC\" d=\"M 250 50 l 150 300\" stroke=\"red\"\n  stroke-width=\"3\" fill=\"none\" />\n  <path d=\"M 175 200 l 150 0\" stroke=\"green\" stroke-width=\"3\"\n  fill=\"none\" />\n  <path d=\"M 100 350 q 150 -300 300 0\" stroke=\"blue\"\n  stroke-width=\"5\" fill=\"none\" />\n  <!-- Mark relevant points -->\n  <g stroke=\"black\" stroke-width=\"3\" fill=\"black\">\n    <circle id=\"pointA\" cx=\"100\" cy=\"350\" r=\"3\" />\n    <circle id=\"pointB\" cx=\"250\" cy=\"50\" r=\"3\" />\n    <circle id=\"pointC\" cx=\"400\" cy=\"350\" r=\"3\" />\n  </g>\n  <!-- Label the points -->\n  <g font-size=\"30\" font-family=\"sans-serif\" fill=\"black\" stroke=\"none\"\n  text-anchor=\"middle\">\n    <text x=\"100\" y=\"350\" dx=\"-30\">A</text>\n    <text x=\"250\" y=\"50\" dy=\"-10\">B</text>\n    <text x=\"400\" y=\"350\" dx=\"30\">C</text>\n  </g>\n</svg>\n          "
+                },
+                {
+                    info: "\n            \u6587\u5B57\n          ",
+                    html: "\n<svg height=\"30\" width=\"200\">\n  <text x=\"0\" y=\"15\" fill=\"red\">I love SVG!</text>\n</svg>\n          "
+                },
+                {
+                    info: "\n            \u65CB\u8F6C\u6587\u5B57\n          ",
+                    html: "\n<svg height=\"60\" width=\"200\">\n  <text x=\"0\" y=\"15\" fill=\"red\" transform=\"rotate(30 20,40)\">I love SVG</text>\n</svg>\n          "
+                },
+                {
+                    info: "\n\n          ",
+                    html: "\n<svg height=\"90\" width=\"200\">\n  <text x=\"10\" y=\"20\" style=\"fill:red;\">Several lines:\n    <tspan x=\"10\" y=\"45\">First line.</tspan>\n    <tspan x=\"10\" y=\"70\">Second line.</tspan>\n  </text>\n</svg>\n          "
+                },
+                {
+                    info: "\n\n          ",
+                    html: "\n<svg height=\"30\" width=\"200\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n  <a xlink:href=\"https://www.w3schools.com/graphics/\" target=\"_blank\">\n    <text x=\"0\" y=\"15\" fill=\"red\">I love SVG!</text>\n  </a>\n</svg>\n          "
+                },
+                {
+                    info: "\n            \u8FB9\u6846 \u5206\u7EC4\n          ",
+                    html: "\n<svg height=\"80\" width=\"300\">\n  <g fill=\"none\">\n    <path stroke=\"red\" d=\"M5 20 l215 0\" />\n    <path stroke=\"black\" d=\"M5 40 l215 0\" />\n    <path stroke=\"blue\" d=\"M5 60 l215 0\" />\n  </g>\n</svg>\n          "
+                },
+                {
+                    info: "\n\n          ",
+                    html: "\n<svg height=\"80\" width=\"300\">\n  <g fill=\"none\" stroke=\"black\">\n    <path stroke-width=\"2\" d=\"M5 20 l215 0\" />\n    <path stroke-width=\"4\" d=\"M5 40 l215 0\" />\n    <path stroke-width=\"6\" d=\"M5 60 l215 0\" />\n  </g>\n</svg>\n          "
+                },
+                {
+                    info: "\n\n          ",
+                    html: "\n<svg height=\"80\" width=\"300\">\n  <g fill=\"none\" stroke=\"black\" stroke-width=\"6\">\n    <path stroke-linecap=\"butt\" d=\"M5 20 l215 0\" />\n    <path stroke-linecap=\"round\" d=\"M5 40 l215 0\" />\n    <path stroke-linecap=\"square\" d=\"M5 60 l215 0\" />\n  </g>\n</svg>\n          "
+                },
+                {
+                    info: "\n            \u865A\u7EBF\n          ",
+                    html: "\n<svg height=\"80\" width=\"300\">\n  <g fill=\"none\" stroke=\"black\" stroke-width=\"4\">\n    <path stroke-dasharray=\"5,5\" d=\"M5 20 l215 0\" />\n    <path stroke-dasharray=\"10,10\" d=\"M5 40 l215 0\" />\n    <path stroke-dasharray=\"20,10,5,5,5,10\" d=\"M5 60 l215 0\" />\n  </g>\n</svg>\n          "
+                },
+                {
+                    info: "\n            \u6EE4\u955C\u4ECB\u7ECD https://www.w3schools.com/graphics/svg_filters_intro.asp\n            <br />\n            \u6A21\u7CCA\u6EE4\u955C\n          ",
+                    html: "\n<svg height=\"110\" width=\"110\">\n  <defs>\n    <filter id=\"f1\" x=\"0\" y=\"0\">\n      <feGaussianBlur in=\"SourceGraphic\" stdDeviation=\"15\" />\n    </filter>\n  </defs>\n  <rect width=\"90\" height=\"90\" stroke=\"green\" stroke-width=\"3\"\n  fill=\"yellow\" filter=\"url(#f1)\" />\n</svg>\n          "
+                },
+                {
+                    info: "\n            \u6295\u5F71\n          ",
+                    html: "\n<svg height=\"120\" width=\"120\">\n  <defs>\n    <filter id=\"f1\" x=\"0\" y=\"0\" width=\"200%\" height=\"200%\">\n      <feOffset result=\"offOut\" in=\"SourceGraphic\" dx=\"20\" dy=\"20\" />\n      <feBlend in=\"SourceGraphic\" in2=\"offOut\" mode=\"normal\" />\n    </filter>\n  </defs>\n  <rect width=\"90\" height=\"90\" stroke=\"green\" stroke-width=\"3\"\n  fill=\"yellow\" filter=\"url(#f1)\" />\n</svg>\n          "
+                },
+                {
+                    info: "\n\n          ",
+                    html: "\n<svg height=\"140\" width=\"140\">\n  <defs>\n    <filter id=\"f2\" x=\"0\" y=\"0\" width=\"200%\" height=\"200%\">\n      <feOffset result=\"offOut\" in=\"SourceGraphic\" dx=\"20\" dy=\"20\" />\n      <feGaussianBlur result=\"blurOut\" in=\"offOut\" stdDeviation=\"10\" />\n      <feBlend in=\"SourceGraphic\" in2=\"blurOut\" mode=\"normal\" />\n    </filter>\n  </defs>\n  <rect width=\"90\" height=\"90\" stroke=\"green\" stroke-width=\"3\"\n  fill=\"yellow\" filter=\"url(#f2)\" />\n</svg>\n          "
+                },
+                {
+                    info: "\n\n          ",
+                    html: "\n<svg height=\"140\" width=\"140\">\n  <defs>\n    <filter id=\"f3\" x=\"0\" y=\"0\" width=\"200%\" height=\"200%\">\n      <feOffset result=\"offOut\" in=\"SourceAlpha\" dx=\"20\" dy=\"20\" />\n      <feGaussianBlur result=\"blurOut\" in=\"offOut\" stdDeviation=\"10\" />\n      <feBlend in=\"SourceGraphic\" in2=\"blurOut\" mode=\"normal\" />\n    </filter>\n  </defs>\n  <rect width=\"90\" height=\"90\" stroke=\"green\" stroke-width=\"3\"\n  fill=\"yellow\" filter=\"url(#f3)\" />\n</svg>\n          "
+                },
+                {
+                    info: "\n\n          ",
+                    html: "\n<svg height=\"140\" width=\"140\">\n  <defs>\n    <filter id=\"f4\" x=\"0\" y=\"0\" width=\"200%\" height=\"200%\">\n      <feOffset result=\"offOut\" in=\"SourceGraphic\" dx=\"20\" dy=\"20\" />\n      <feColorMatrix result=\"matrixOut\" in=\"offOut\" type=\"matrix\"\n      values=\"0.2 0 0 0 0 0 0.2 0 0 0 0 0 0.2 0 0 0 0 0 1 0\" />\n      <feGaussianBlur result=\"blurOut\" in=\"matrixOut\" stdDeviation=\"10\" />\n      <feBlend in=\"SourceGraphic\" in2=\"blurOut\" mode=\"normal\" />\n    </filter>\n  </defs>\n  <rect width=\"90\" height=\"90\" stroke=\"green\" stroke-width=\"3\"\n  fill=\"yellow\" filter=\"url(#f4)\" />\n</svg>\n          "
+                },
+                {
+                    info: "\n            \u7EBF\u6027\u6E10\u53D8\n          ",
+                    html: "\n<svg height=\"150\" width=\"400\">\n  <defs>\n    <linearGradient id=\"grad1\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"0%\">\n      <stop offset=\"0%\" style=\"stop-color:rgb(255,255,0);stop-opacity:1\" />\n      <stop offset=\"100%\" style=\"stop-color:rgb(255,0,0);stop-opacity:1\" />\n    </linearGradient>\n  </defs>\n  <ellipse cx=\"200\" cy=\"70\" rx=\"85\" ry=\"55\" fill=\"url(#grad1)\" />\n</svg>\n          "
+                },
+                {
+                    info: "\n\n          ",
+                    html: "\n<svg height=\"150\" width=\"400\">\n  <defs>\n    <linearGradient id=\"grad2\" x1=\"0%\" y1=\"0%\" x2=\"0%\" y2=\"100%\">\n      <stop offset=\"0%\" style=\"stop-color:rgb(255,255,0);stop-opacity:1\" />\n      <stop offset=\"100%\" style=\"stop-color:rgb(255,0,0);stop-opacity:1\" />\n    </linearGradient>\n  </defs>\n  <ellipse cx=\"200\" cy=\"70\" rx=\"85\" ry=\"55\" fill=\"url(#grad2)\" />\n</svg>\n          "
+                },
+                {
+                    info: "\n\n          ",
+                    html: "\n<svg height=\"150\" width=\"400\">\n  <defs>\n    <linearGradient id=\"grad3\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"0%\">\n      <stop offset=\"0%\" style=\"stop-color:rgb(255,255,0);stop-opacity:1\" />\n      <stop offset=\"100%\" style=\"stop-color:rgb(255,0,0);stop-opacity:1\" />\n    </linearGradient>\n  </defs>\n  <ellipse cx=\"200\" cy=\"70\" rx=\"85\" ry=\"55\" fill=\"url(#grad3)\" />\n  <text fill=\"#ffffff\" font-size=\"45\" font-family=\"Verdana\" x=\"150\" y=\"86\">\n  SVG</text>\n</svg>\n          "
+                },
+                {
+                    info: "\n            \u5F84\u5411\u6E10\u53D8\n          ",
+                    html: "\n<svg height=\"150\" width=\"500\">\n  <defs>\n    <radialGradient id=\"grad1\" cx=\"50%\" cy=\"50%\" r=\"50%\" fx=\"50%\" fy=\"50%\">\n      <stop offset=\"0%\" style=\"stop-color:rgb(255,255,255);\n      stop-opacity:0\" />\n      <stop offset=\"100%\" style=\"stop-color:rgb(0,0,255);stop-opacity:1\" />\n    </radialGradient>\n  </defs>\n  <ellipse cx=\"200\" cy=\"70\" rx=\"85\" ry=\"55\" fill=\"url(#grad1)\" />\n</svg>\n          "
+                },
+                {
+                    info: "\n            \n          ",
+                    html: "\n<svg height=\"150\" width=\"500\">\n  <defs>\n    <radialGradient id=\"grad2\" cx=\"20%\" cy=\"30%\" r=\"30%\" fx=\"50%\" fy=\"50%\">\n      <stop offset=\"0%\" style=\"stop-color:rgb(255,255,255);\n      stop-opacity:0\" />\n      <stop offset=\"100%\" style=\"stop-color:rgb(0,0,255);stop-opacity:1\" />\n    </radialGradient>\n  </defs>\n  <ellipse cx=\"200\" cy=\"70\" rx=\"85\" ry=\"55\" fill=\"url(#grad2)\" />\n</svg>\n          "
+                },
+                {
+                    info: "\nsvg \u6848\u4F8B\n<br />\nhttps://www.w3schools.com/graphics/svg_examples.asp\n",
+                    html: "\n\n"
+                }
+            ]
+        };
+    }
+});
+
+</script>
+
+</body>
+</html>

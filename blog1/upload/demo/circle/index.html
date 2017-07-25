@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title></title>
+</head>
+<body>
+
+<style>
+	* {padding: 0; margin: 0; list-style: none; vertical-align: top;}
+	body {background: #000;}
+</style>
+<canvas width="800" height="600"></canvas>
+<script>
+var canvas = document.getElementsByTagName('canvas')[0]
+var gd = canvas.getContext('2d')
+var len = 60
+var count = 0
+
+var target = {
+	x: window.innerWidth / 2,
+	y: window.innerHeight / 2,
+}
+
+window.onresize = function() {
+	canvas.width = window.innerWidth
+	canvas.height = window.innerHeight
+}
+window.onresize()
+
+var colors = new Array(len).fill().map(function(_, idx) {
+	var deg = 360 / len
+	var color = {
+		h: deg * idx,
+		s: '50%',
+		l: '50%',
+		a: 1,
+	}
+	color.toString = function() {
+		return 'hsla(' + color.h + ', ' + color.s + ', ' + color.l + ', ' + color.a + ')'
+	}
+	return color
+})
+
+var points = new Array(len).fill().map(function(_, idx) {
+	var deg = 360 / len
+	return {
+		x: 150,
+		y: 200,
+		r: idx * 2,
+		// strokeColor: 'hsla(' + (idx * deg) + ',50%,50%,1)'
+	}
+})
+
+function draw() {
+	var item = colors.pop()
+	colors.unshift(item)
+	points.forEach(function(p, idx) {
+		var opacity = idx / len
+		var speedX = (target.x - p.x) / (idx + 1) * 2
+		var speedY = (target.y - p.y) / (idx + 1) * 2
+		p.x += speedX
+		p.y += speedY
+
+		gd.beginPath()
+		colors[idx].a = (len - idx) / len
+
+		gd.strokeStyle = colors[idx].toString()
+		gd.lineWidth = 1
+		gd.arc(p.x, p.y, p.r, 0, 2 * Math.PI)
+		gd.stroke()
+		gd.closePath()
+	})
+}
+
+
+setInterval(() => {
+	gd.clearRect(0, 0, canvas.width, canvas.height)
+	draw()
+}, 13)
+
+canvas.ontouchmove = document.onmousemove = function(e) {
+	e.preventDefault()
+	target.x = e.clientX !== undefined ? e.clientX : e.targetTouches[0].clientX
+	target.y = e.clientY !== undefined ? e.clientY : e.targetTouches[0].clientY
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+#page-box {width: 100%; height: calc(100% - 50px); position: absolute;}
+#page-box > div {width: 100%; position: absolute; left: 0; top: 0;}
+
+#friend {}
+#friend .img-box {padding-top: 80%;}
+
+#resume {background: rgb(52,166,190); box-shadow: 0 0 10px rgba(0,0,0,.2);}
+#resume .l {color: #fff; padding-bottom: 50px;}
+#resume .l .user-name {font-size: 30px; margin: .5em 0;}
+#resume .l .face-img {width: 150px; height: 150px; margin: 0 auto; background: url(../img/face.png) no-repeat center / cover; border-radius: 50%;}
+#resume .con {padding-top: .1px;margin-bottom: 0; background: rgb(225,239,239);}
+#resume .con .page-header {border-bottom-color: rgba(0,0,0,.2);}
+
+
+#iframe-box {position: fixed; z-index: 900; width: 100%; left: 0; top: 50px; bottom: 0;}
+#iframe-box iframe {width: 100%; height: 100%; vertical-align: top; background: #fff;}
